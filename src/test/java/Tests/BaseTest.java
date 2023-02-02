@@ -1,15 +1,11 @@
 package Tests;
 
-import Pages.BasePage;
 import Pages.LoginPage;
-import Pages.SignupPage;
+import Pages.SignUpPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -18,7 +14,7 @@ public abstract class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait webDriverWait;
     protected LoginPage loginPage;
-    protected SignupPage signupPage;
+    protected SignUpPage signupPage;
 
     final String baseUrl = ("https://vue-demo.daniel-avellaneda.com");
 
@@ -29,7 +25,7 @@ public abstract class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         loginPage = new LoginPage(driver, webDriverWait);
-        signupPage = new SignupPage(driver, webDriverWait);
+        signupPage = new SignUpPage(driver, webDriverWait);
 
     }
 
@@ -38,7 +34,6 @@ public abstract class BaseTest {
         driver.get(baseUrl);
         driver.manage().window().maximize();
     }
-
     @AfterClass
     public void afterClass() {
         driver.quit();

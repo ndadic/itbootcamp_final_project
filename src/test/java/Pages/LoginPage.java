@@ -24,6 +24,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
     private WebElement wrongPasswordAlert;
 
+    @FindBy (xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")
+    private WebElement logout;
+
     public LoginPage(WebDriver driver, WebDriverWait webDriverWait) {
         super(driver, webDriverWait);
     }
@@ -40,6 +43,8 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String email, String password){
+        this.email.clear();
+        this.password.clear();
         this.email.sendKeys(email);
         this.password.sendKeys(password);
         loginButton.click();
@@ -55,4 +60,13 @@ public class LoginPage extends BasePage {
         return wrongPassMessage;
     }
 
+    public boolean isLogoutVisible(){
+        logout.isDisplayed();
+        return true;
+    }
+    public void logout(){
+        logout.click();
+    }
 }
+
+

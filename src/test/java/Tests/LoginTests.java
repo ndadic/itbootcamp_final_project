@@ -56,11 +56,11 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void logoutTest() throws InterruptedException {
+    public void logoutTest() {
         loginPage.login("admin@admin.com", "12345");
-        Assert.assertTrue(signupPage.isLogoutVisible());
+        Assert.assertTrue(loginPage.isLogoutVisible());
+        loginPage.logout();
         Assert.assertTrue(loginPage.containsStringUrl("/login"));
-        signupPage.getLogout().click();
         driver.get(baseUrl + "/home");
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
 
