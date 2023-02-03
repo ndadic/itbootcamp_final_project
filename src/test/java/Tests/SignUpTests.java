@@ -34,7 +34,7 @@ public class SignUpTests extends BaseTest {
     }
 
     @Test
-    public void newUser(){
+    public void newUser() {
         signupPage.signUp("Natalija Dadic", "nd369@gmail.com", 693369);
         Assert.assertEquals(signupPage.verifyAccountMessage(), "IMPORTANT: Verify your account");
     }

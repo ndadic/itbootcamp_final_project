@@ -7,29 +7,30 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignUpPage extends BasePage {
 
-    @FindBy (xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[4]")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[4]")
     private WebElement signUpHeaderButton;
 
-    @FindBy (id = "name")
+    @FindBy(id = "name")
     private WebElement name;
 
-    @FindBy (id = "email")
+    @FindBy(id = "email")
     private WebElement email;
 
-    @FindBy (id = "password")
+    @FindBy(id = "password")
     private WebElement password;
 
-    @FindBy (id = "confirmPassword")
+    @FindBy(id = "confirmPassword")
     private WebElement confirmPassword;
 
-    @FindBy (xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button")
     private WebElement signUpButton;
 
-    @FindBy (xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/ul/li")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/ul/li")
     private WebElement alertMessageUserExists;
 
-    @FindBy (xpath = "//*[@id=\"app\"]/div[4]/div/div/div[1]")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[1]")
     private WebElement verifyAccount;
+
     ////*[@id="app"]/div[4]/div/div - cela por
     public SignUpPage(WebDriver driver, WebDriverWait webDriverWait) {
         super(driver, webDriverWait);
@@ -47,11 +48,11 @@ public class SignUpPage extends BasePage {
         return confirmPassword;
     }
 
-    public void openSignUpPage(){
+    public void openSignUpPage() {
         signUpHeaderButton.click();
     }
 
-    public void signUp(String name, String email, int password){
+    public void signUp(String name, String email, int password) {
         this.name.clear();
         this.email.clear();
         this.password.clear();
@@ -65,12 +66,12 @@ public class SignUpPage extends BasePage {
 
     }
 
-    public String alertMessage(){
-      String message = alertMessageUserExists.getText();
-      return message;
+    public String alertMessage() {
+        String message = alertMessageUserExists.getText();
+        return message;
     }
 
-    public String verifyAccountMessage(){
+    public String verifyAccountMessage() {
         String verifyMessage = verifyAccount.getText();
         return verifyMessage;
     }

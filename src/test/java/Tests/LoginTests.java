@@ -1,21 +1,10 @@
 package Tests;
 
-import Pages.LoginPage;
-import com.github.javafaker.Faker;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
-    Faker faker;
-
-    @Override
-    @BeforeClass
-    public void beforeClass() {
-        super.beforeClass();
-        faker = new Faker();
-    }
 
     @BeforeMethod
     public void beforeMethod() {

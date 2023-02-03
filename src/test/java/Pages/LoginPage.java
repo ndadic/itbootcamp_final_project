@@ -5,9 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class LoginPage extends BasePage {
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]")
+    @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/a[3]")
     private WebElement loginHeaderButton;
     @FindBy(id = "email")
     private WebElement email;
@@ -24,7 +26,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
     private WebElement wrongPasswordAlert;
 
-    @FindBy (xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")
     private WebElement logout;
 
     public LoginPage(WebDriver driver, WebDriverWait webDriverWait) {
@@ -38,11 +40,12 @@ public class LoginPage extends BasePage {
     public WebElement getPassword() {
         return password;
     }
+
     public void openLoginPage() {
         loginHeaderButton.click();
     }
 
-    public void login(String email, String password){
+    public void login(String email, String password) {
         this.email.clear();
         this.password.clear();
         this.email.sendKeys(email);
@@ -50,21 +53,22 @@ public class LoginPage extends BasePage {
         loginButton.click();
     }
 
-    public String alertMessage(){
+    public String alertMessage() {
         String message = alertMessage.getText();
         return message;
     }
 
-    public String wrongPasswordMessage(){
+    public String wrongPasswordMessage() {
         String wrongPassMessage = wrongPasswordAlert.getText();
         return wrongPassMessage;
     }
 
-    public boolean isLogoutVisible(){
+    public boolean isLogoutVisible() {
         logout.isDisplayed();
         return true;
     }
-    public void logout(){
+
+    public void logout() {
         logout.click();
     }
 }
