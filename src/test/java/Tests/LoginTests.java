@@ -47,8 +47,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void logoutTest() {
         loginPage.login("admin@admin.com", "12345");
-        Assert.assertTrue(loginPage.isLogoutVisible());
-        loginPage.logout();
+        Assert.assertTrue(homePage.isLogoutVisible());
+        homePage.logout();
         Assert.assertTrue(loginPage.containsStringUrl("/login"));
         driver.get(baseUrl + "/home");
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));

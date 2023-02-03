@@ -1,14 +1,13 @@
 package Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class CitiesPage extends BasePage {
+public class AdminCitiesPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[1]")
     private WebElement adminButton;
@@ -48,7 +47,16 @@ public class CitiesPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]")
     private WebElement cityNameTable;
 
-    public CitiesPage(WebDriver driver, WebDriverWait webDriverWait) {
+    @FindBy (xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[3]/div[2]")
+    private WebElement numberOfTableElements;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div")
+    private WebElement deleteAlertMessage;
+
+    @FindBy (xpath = "//*[@id=\"app\"]/div[4]/div/div/div[2]/button[2]")
+    private WebElement confirmeDelete;
+
+    public AdminCitiesPage(WebDriver driver, WebDriverWait webDriverWait) {
         super(driver, webDriverWait);
     }
 
@@ -71,8 +79,8 @@ public class CitiesPage extends BasePage {
     }
 
     public void searchCity(String city) {
-        searchField.sendKeys(city + " - edited");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        searchField.sendKeys(city); //+ " - edited"
+        webDriverWait.until(ExpectedConditions.textToBe(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]"), city + " - edited"));
     }
 
     public String messageAlert() {
@@ -85,5 +93,12 @@ public class CitiesPage extends BasePage {
         return editedCityName;
     }
 
+    public void deleteCity(){
+        webDriverWait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[3]/div[2]"), "1"));
+        deleteButton.click();
+        webDriverWait.until(ExpectedConditions.alertIsPresent());
+        confirmeDelete.click();
+        webDriverWait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]"), "Deleted successfully"));
+    }
 
 }

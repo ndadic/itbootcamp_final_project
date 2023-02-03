@@ -1,19 +1,17 @@
 package Tests;
 
-import Pages.CitiesPage;
+import Pages.AdminCitiesPage;
+import Pages.HomePage;
 import Pages.LoginPage;
 import Pages.SignUpPage;
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.time.Duration;
-import java.util.List;
+
 
 public abstract class BaseTest {
 
@@ -24,10 +22,11 @@ public abstract class BaseTest {
     protected LoginPage loginPage;
     protected SignUpPage signupPage;
 
-    protected CitiesPage citiesPage;
+    protected AdminCitiesPage adminCitiesPage;
+    protected HomePage homePage;
 
     final String baseUrl = ("https://vue-demo.daniel-avellaneda.com");
-    protected String city;
+    protected String city1;
 
     @BeforeClass
     public void beforeClass() {
@@ -38,16 +37,21 @@ public abstract class BaseTest {
         faker = new Faker();
         loginPage = new LoginPage(driver, webDriverWait);
         signupPage = new SignUpPage(driver, webDriverWait);
-        citiesPage = new CitiesPage(driver, webDriverWait);
+        adminCitiesPage = new AdminCitiesPage(driver, webDriverWait);
+        homePage = new HomePage(driver, webDriverWait);
     }
 
     @BeforeMethod
     public void beforeMethod() {
         driver.get(baseUrl);
         driver.manage().window().maximize();
-        city = faker.address().city();
     }
 
+    @AfterMethod
+    public void afterMethod() {
+    //    if (homePage.isLogoutVisible()) {
+      //      homePage.logout();}
+    }
 
     @AfterClass
     public void afterClass() {
