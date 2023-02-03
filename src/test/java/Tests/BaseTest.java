@@ -48,13 +48,6 @@ public abstract class BaseTest {
         city = faker.address().city();
     }
 
-    @AfterMethod
-    public void afterMethod() {
-       List<WebElement> backToHome = driver.findElements(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]"));
-        if (backToHome.size() == 1) {
-            loginPage.logout();
-        }
-    }
 
     @AfterClass
     public void afterClass() {

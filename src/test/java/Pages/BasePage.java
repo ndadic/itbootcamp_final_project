@@ -15,7 +15,7 @@ public abstract class BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public boolean containsStringUrl(String url){
+    public boolean containsStringUrl(String url) {
         driver.getCurrentUrl().contains(url);
         return true;
     }
