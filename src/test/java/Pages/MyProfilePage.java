@@ -4,6 +4,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyProfilePage extends BasePage {
@@ -28,14 +29,25 @@ public class MyProfilePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")
     private WebElement saveMessage;
 
-//    @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[3]/button")
-//    private WebElement close;
+    @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[1]")
+    private WebElement verifyAccount;
+
+    @FindBy(css = "#app > div.v-dialog__content.v-dialog__content--active > div > div > div.v-card__actions > button")
+    ////*[@id="app"]/div[4]/div/div/div[3]/button
+    private WebElement close;
 
     public MyProfilePage(WebDriver driver, WebDriverWait webDriverWait) {
         super(driver, webDriverWait);
     }
 
+    public void afterSignUp(){
+        webDriverWait.until(ExpectedConditions.textToBePresentInElement(verifyAccount, "IMPORTANT: Verify your account"));
+        close.click();
+
+    }
     public void editProfile(String phone, String city, String country, String twitter, String gitHub) {
+       // Thread.sleep(3000);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(phoneField));
         phoneField.clear();
         phoneField.sendKeys(phone);
         cityField.sendKeys(Keys.SPACE);

@@ -1,6 +1,7 @@
 package Tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -35,8 +36,13 @@ public class SignUpTests extends BaseTest {
 
     @Test
     public void newUser() {
-        signupPage.signUp("Natalija Dadic", "nd369@gmail.com", "693369");
+        signupPage.signUp("Natalija Dadic", "jebotevise@gmail.com", "693369");
+        signupPage.waitAssertationMessage();
         Assert.assertEquals(signupPage.verifyAccountMessage(), "IMPORTANT: Verify your account");
+        myProfilePage.afterSignUp();
+        homePage.logout();
     }
 
+
 }
+

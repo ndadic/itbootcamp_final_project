@@ -1,8 +1,10 @@
 package Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignUpPage extends BasePage {
@@ -31,7 +33,6 @@ public class SignUpPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[1]")
     private WebElement verifyAccount;
 
-    ////*[@id="app"]/div[4]/div/div - cela por
     public SignUpPage(WebDriver driver, WebDriverWait webDriverWait) {
         super(driver, webDriverWait);
     }
@@ -63,6 +64,10 @@ public class SignUpPage extends BasePage {
         this.password.sendKeys(password);
         this.confirmPassword.sendKeys(password);
         signUpButton.click();
+    }
+
+    public void waitAssertationMessage(){
+        webDriverWait.until(ExpectedConditions.textToBePresentInElement(verifyAccount, "IMPORTANT: Verify your account"));
 
     }
 

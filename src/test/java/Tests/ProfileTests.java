@@ -20,6 +20,7 @@ public class ProfileTests extends BaseTest {
 
     @Test
     public void editProfile() {
+        myProfilePage.afterSignUp();
         homePage.clickOnMyProfile();
         myProfilePage.editProfile(phoneNumber, "Chicago", country, twitterUrl, gitHubUrl);
 
