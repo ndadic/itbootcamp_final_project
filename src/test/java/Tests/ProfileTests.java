@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 public class ProfileTests extends BaseTest {
 
+    final String city = "Chicago";
     @BeforeMethod
     @Override
     public void beforeMethod() {
@@ -18,17 +19,18 @@ public class ProfileTests extends BaseTest {
         gitHubUrl = "https://" + faker.internet().url();
     }
 
+
     @Test
     public void editProfile() {
 
         myProfilePage.afterSignUp();
         homePage.clickOnMyProfile();
-        myProfilePage.editProfile(phoneNumber, "Chicago", country, twitterUrl, gitHubUrl);
+        myProfilePage.editProfile(phoneNumber, city, country, twitterUrl, gitHubUrl);
 
         Assert.assertTrue(myProfilePage.saveMessage().contains("Profile saved successfuly"));
 
         Assert.assertEquals(myProfilePage.getPhoneField().getAttribute("value"), phoneNumber);
-        Assert.assertEquals(myProfilePage.getCityField().getAttribute("value"), "Chicago");
+        Assert.assertEquals(myProfilePage.getCityField().getAttribute("value"), city);
         Assert.assertEquals(myProfilePage.getCountryField().getAttribute("value"), country);
         Assert.assertEquals(myProfilePage.getTwitterField().getAttribute("value"), twitterUrl);
         Assert.assertEquals(myProfilePage.getGitHubField().getAttribute("value"), gitHubUrl);

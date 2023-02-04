@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 public class SignUpTests extends BaseTest {
 
+    final String signUpUrl = "/signup";
     @BeforeMethod
     @Override
     public void beforeMethod() {
@@ -15,13 +16,13 @@ public class SignUpTests extends BaseTest {
 
     @Test
     public void checkURLcontains() {
-        Assert.assertTrue(signupPage.containsStringUrl("/signup"));
+        Assert.assertTrue(signupPage.containsStringUrl(signUpUrl));
     }
 
     @Test
     public void checkInputFields() {
 
-        Assert.assertEquals(signupPage.getEmail().getAttribute("type"), "email");
+          Assert.assertEquals(signupPage.getEmail().getAttribute("type"), "email");
         Assert.assertEquals(signupPage.getPassword().getAttribute("type"), "password");
         Assert.assertEquals(signupPage.getConfirmPassword().getAttribute("type"), "password");
     }
@@ -32,7 +33,7 @@ public class SignUpTests extends BaseTest {
 
         signupPage.signUp("Test Test", email, "123654");
         Assert.assertEquals(signupPage.alertMessage(), "E-mail already exists");
-        Assert.assertTrue(signupPage.containsStringUrl("/signup"));
+        Assert.assertTrue(signupPage.containsStringUrl(signUpUrl));
     }
 
     @Test
