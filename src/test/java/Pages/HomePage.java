@@ -5,17 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
 public class HomePage extends BasePage {
 
     @FindBy(className = "btnLogout")
     private WebElement logout;
-
-    public WebElement getLogout() {
-        return logout;
-    }
-
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button")
     private WebElement languageButton;
 
@@ -39,6 +32,10 @@ public class HomePage extends BasePage {
         super(driver, webDriverWait);
     }
 
+    public WebElement getLogout() {
+        return logout;
+    }
+
     public boolean isLogoutVisible() {
         logout.isDisplayed();
         return true;
@@ -48,19 +45,20 @@ public class HomePage extends BasePage {
         logout.click();
     }
 
-    public void clickLanguageButtonEN() {
-        languageButton.click();
-        buttonEN.click();
+    public WebElement getLanguageButton() {
+        return languageButton;
     }
 
-    public void clickLanguageButtonFR() {
-        languageButton.click();
-        buttonFR.click();
+    public WebElement getButtonEN() {
+        return buttonEN;
     }
 
-    public void clickLanguageButtonES() {
-        languageButton.click();
-        buttonES.click();
+    public WebElement getButtonES() {
+        return buttonES;
+    }
+
+    public WebElement getButtonFR() {
+        return buttonFR;
     }
 
     public String headerMessage() {

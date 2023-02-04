@@ -43,10 +43,13 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String email, String password) {
+
         this.email.clear();
         this.password.clear();
+
         this.email.sendKeys(email);
         this.password.sendKeys(password);
+
         loginButton.click();
     }
 

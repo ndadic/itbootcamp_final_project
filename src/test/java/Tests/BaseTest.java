@@ -2,10 +2,8 @@ package Tests;
 
 import Pages.*;
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
@@ -28,6 +26,9 @@ public abstract class BaseTest {
     final String baseUrl = ("https://vue-demo.daniel-avellaneda.com");
     final String email = "admin@admin.com";
     final String truePass = "12345";
+    final String loginUrl = "/login";
+    final String homeUrl = "/home";
+    final String adminCitiesUrl = "/admin/cities";
 
 
     protected String city;
@@ -60,6 +61,7 @@ public abstract class BaseTest {
     public void afterMethod() {
 
     }
+
     @AfterClass
     public void afterClass() {
         driver.quit();

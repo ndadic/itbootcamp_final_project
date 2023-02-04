@@ -1,6 +1,5 @@
 package Pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -63,10 +62,11 @@ public class SignUpPage extends BasePage {
         this.email.sendKeys(email);
         this.password.sendKeys(password);
         this.confirmPassword.sendKeys(password);
+
         signUpButton.click();
     }
 
-    public void waitAssertationMessage(){
+    public void waitAssertationMessage() {
         webDriverWait.until(ExpectedConditions.textToBePresentInElement(verifyAccount, "IMPORTANT: Verify your account"));
 
     }

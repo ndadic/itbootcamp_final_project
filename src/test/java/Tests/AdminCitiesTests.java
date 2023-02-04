@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 
 public class AdminCitiesTests extends BaseTest {
 
+    final String savedMessage = "Saved successfully";
+
     @BeforeMethod
     @Override
     public void beforeMethod() {
@@ -19,27 +21,31 @@ public class AdminCitiesTests extends BaseTest {
 
     @Test
     public void adminCitiesPage() {
-        Assert.assertTrue(adminCitiesPage.containsStringUrl("/admin/cities"));
+
+        Assert.assertTrue(adminCitiesPage.containsStringUrl(adminCitiesUrl));
         Assert.assertTrue(homePage.isLogoutVisible());
 
     }
 
     @Test
     public void addNewCity() {
+
         adminCitiesPage.addNewCity(city);
-        Assert.assertTrue(adminCitiesPage.messageAlert().contains("Saved successfully"));
+        Assert.assertTrue(adminCitiesPage.messageAlert().contains(savedMessage));
     }
 
     @Test
-    public void editCity() throws InterruptedException {
+    public void editCity() {
+
         adminCitiesPage.addNewCity(city);
         adminCitiesPage.editExistingCity(city);
-        Assert.assertTrue(adminCitiesPage.messageAlert().contains("Saved successfully"));
+        Assert.assertTrue(adminCitiesPage.messageAlert().contains(savedMessage));
 
     }
 
     @Test
     public void searchEditedCity() {
+
         adminCitiesPage.addNewCity(city);
         adminCitiesPage.editExistingCity(city);
         adminCitiesPage.searchCity(city);
@@ -48,7 +54,8 @@ public class AdminCitiesTests extends BaseTest {
     }
 
     @Test
-    public void deleteCity() throws InterruptedException {
+    public void deleteCity() {
+
         adminCitiesPage.addNewCity(city);
         adminCitiesPage.editExistingCity(city);
         Assert.assertTrue(adminCitiesPage.cityName().contains(city));
