@@ -52,7 +52,7 @@ public class SignUpPage extends BasePage {
         signUpHeaderButton.click();
     }
 
-    public void signUp(String name, String email, int password) {
+    public void signUp(String name, String email, String password) {
         this.name.clear();
         this.email.clear();
         this.password.clear();
@@ -60,8 +60,8 @@ public class SignUpPage extends BasePage {
 
         this.name.sendKeys(name);
         this.email.sendKeys(email);
-        this.password.sendKeys(String.valueOf(password));
-        this.confirmPassword.sendKeys(String.valueOf(password));
+        this.password.sendKeys(password);
+        this.confirmPassword.sendKeys(password);
         signUpButton.click();
 
     }

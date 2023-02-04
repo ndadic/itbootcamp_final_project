@@ -1,8 +1,7 @@
 package Tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -13,9 +12,9 @@ public class AdminCitiesTests extends BaseTest {
     public void beforeMethod() {
         super.beforeMethod();
         loginPage.openLoginPage();
-        loginPage.login("admin@admin.com", "12345");
+        loginPage.login(email, truePass);
         adminCitiesPage.openCitiesPage();
-        city1 = faker.address().city();
+        city = faker.address().city();
     }
 
     @Test
@@ -25,34 +24,42 @@ public class AdminCitiesTests extends BaseTest {
 
     }
 
-
-    String city = "Tokyo";
-
-    @Test (priority = 1)
+    @Test
     public void addNewCity() {
         adminCitiesPage.addNewCity(city);
         Assert.assertTrue(adminCitiesPage.messageAlert().contains("Saved successfully"));
     }
 
-    @Test (priority = 2)
-    public void editCity() {
+    @Test
+    public void editCity() throws InterruptedException {
+        adminCitiesPage.addNewCity(city);
         adminCitiesPage.editExistingCity(city);
         Assert.assertTrue(adminCitiesPage.messageAlert().contains("Saved successfully"));
 
     }
 
-    @Test (priority = 3)
+    @Test
     public void searchEditedCity() {
+        adminCitiesPage.addNewCity(city);
+        adminCitiesPage.editExistingCity(city);
         adminCitiesPage.searchCity(city);
         Assert.assertEquals(adminCitiesPage.cityName(), city + " - edited");
 
     }
 
-    @Test (priority = 4)
-    public void deleteCity() {
-        adminCitiesPage.searchCity("Oakland");
-       // Assert.assertEquals(adminCitiesPage.cityName(), city);
-        adminCitiesPage.deleteCity();
+    @Test
+    public void deleteCity() throws InterruptedException {
+        adminCitiesPage.addNewCity(city);
+        adminCitiesPage.editExistingCity(city);
+        Assert.assertTrue(adminCitiesPage.cityName().contains(city));
+        adminCitiesPage.deleteCity(city);
         Assert.assertTrue(adminCitiesPage.messageAlert().contains("Deleted successfully"));
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        if (homePage.getLogout().isDisplayed()) {
+            homePage.logout();
+        }
     }
 }

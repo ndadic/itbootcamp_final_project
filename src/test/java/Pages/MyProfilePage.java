@@ -6,11 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-//this.cityField.sendKeys(Keys.SPACE);
-//        this.cityField.sendKeys(Keys.CONTROL + "a");
-//        this.cityField.sendKeys(city);
-//        this.cityField.sendKeys(Keys.ARROW_DOWN);
-//        this.cityField.sendKeys(Keys.ENTER);
 public class MyProfilePage extends BasePage {
     @FindBy(id = "phone")
     private WebElement phoneField;
@@ -30,11 +25,11 @@ public class MyProfilePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[8]/button")
     private WebElement saveButton;
 
-    @FindBy (xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")
     private WebElement saveMessage;
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[3]/button")
-    private WebElement close;
+//    @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[3]/button")
+//    private WebElement close;
 
     public MyProfilePage(WebDriver driver, WebDriverWait webDriverWait) {
         super(driver, webDriverWait);
@@ -57,12 +52,7 @@ public class MyProfilePage extends BasePage {
         saveButton.click();
 
     }
-
-    public WebElement getClose() {
-        return close;
-    }
-
-    public String saveMessage(){
+    public String saveMessage() {
         String saveMessageText = saveMessage.getText();
         return saveMessageText;
     }

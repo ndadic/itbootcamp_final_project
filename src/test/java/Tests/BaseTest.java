@@ -1,12 +1,11 @@
 package Tests;
 
-import Pages.AdminCitiesPage;
-import Pages.HomePage;
-import Pages.LoginPage;
-import Pages.SignUpPage;
+import Pages.*;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
@@ -24,9 +23,18 @@ public abstract class BaseTest {
 
     protected AdminCitiesPage adminCitiesPage;
     protected HomePage homePage;
+    protected MyProfilePage myProfilePage;
 
     final String baseUrl = ("https://vue-demo.daniel-avellaneda.com");
-    protected String city1;
+    final String email = "admin@admin.com";
+    final String truePass = "12345";
+
+
+    protected String city;
+    protected String phoneNumber;
+    protected String country;
+    protected String twitterUrl;
+    protected String gitHubUrl;
 
     @BeforeClass
     public void beforeClass() {
@@ -39,6 +47,7 @@ public abstract class BaseTest {
         signupPage = new SignUpPage(driver, webDriverWait);
         adminCitiesPage = new AdminCitiesPage(driver, webDriverWait);
         homePage = new HomePage(driver, webDriverWait);
+        myProfilePage = new MyProfilePage(driver, webDriverWait);
     }
 
     @BeforeMethod
@@ -49,10 +58,8 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void afterMethod() {
-    //    if (homePage.isLogoutVisible()) {
-      //      homePage.logout();}
-    }
 
+    }
     @AfterClass
     public void afterClass() {
         driver.quit();

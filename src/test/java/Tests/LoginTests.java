@@ -32,21 +32,21 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void wrongPassword() {
-        loginPage.login("admin@admin.com", faker.internet().password());
+        loginPage.login(email, faker.internet().password());
         Assert.assertEquals(loginPage.wrongPasswordMessage(), "Wrong password");
         Assert.assertTrue(loginPage.containsStringUrl("/login"));
     }
 
     @Test
     public void loginTest() {
-        loginPage.login("admin@admin.com", "12345");
+        loginPage.login(email, truePass);
         Assert.assertTrue(loginPage.containsStringUrl("/home"));
 
     }
 
     @Test
     public void logoutTest() {
-        loginPage.login("admin@admin.com", "12345");
+        loginPage.login(email, truePass);
         Assert.assertTrue(homePage.isLogoutVisible());
         homePage.logout();
         Assert.assertTrue(loginPage.containsStringUrl("/login"));

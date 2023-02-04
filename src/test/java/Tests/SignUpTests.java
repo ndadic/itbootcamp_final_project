@@ -28,14 +28,14 @@ public class SignUpTests extends BaseTest {
 
     @Test
     public void userAlreadyExists() {
-        signupPage.signUp("Test Test", "admin@admin.com", 123654);
+        signupPage.signUp("Test Test", email, "123654");
         Assert.assertEquals(signupPage.alertMessage(), "E-mail already exists");
         Assert.assertTrue(signupPage.containsStringUrl("/signup"));
     }
 
     @Test
     public void newUser() {
-        signupPage.signUp("Natalija Dadic", "nd369@gmail.com", 693369);
+        signupPage.signUp("Natalija Dadic", "nd369@gmail.com", "693369");
         Assert.assertEquals(signupPage.verifyAccountMessage(), "IMPORTANT: Verify your account");
     }
 

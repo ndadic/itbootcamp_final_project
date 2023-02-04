@@ -1,7 +1,6 @@
 package Tests;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -22,7 +21,7 @@ public class ProfileTests extends BaseTest {
     @Test
     public void editProfile() {
         homePage.clickOnMyProfile();
-        myProfilePage.editProfile(phoneNumber,"Chicago", country, twitterUrl, gitHubUrl);
+        myProfilePage.editProfile(phoneNumber, "Chicago", country, twitterUrl, gitHubUrl);
 
         Assert.assertTrue(myProfilePage.saveMessage().contains("Profile saved successfuly"));
 
