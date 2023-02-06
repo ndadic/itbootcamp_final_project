@@ -1,35 +1,46 @@
 package Tests;
 
+import Pages.LoginPage;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class AuthRoutesTests extends BaseTest {
 
+    protected LoginPage loginPage;
+
+    @Override
+    @BeforeClass
+    public void beforeClass() {
+        super.beforeClass();
+        loginPage = new LoginPage(driver, webDriverWait);
+    }
+
     @Test
     public void homePageLoggedOutUser() {
 
-        driver.get(baseUrl + homeUrl);
-        Assert.assertTrue(loginPage.containsStringUrl(loginUrl));
+        driver.get(BASEURL + HOME_URL);
+        Assert.assertTrue(loginPage.containsStringUrl(LOGIN_URL));
     }
 
     @Test
     public void profilePageLoggedOutUser() {
 
-        driver.get(baseUrl + "/profile");
-        Assert.assertTrue(loginPage.containsStringUrl(loginUrl));
+        driver.get(BASEURL + "/profile");
+        Assert.assertTrue(loginPage.containsStringUrl(LOGIN_URL));
     }
 
     @Test
     public void adminCitiesLoggedOutUser() {
 
-        driver.get(baseUrl + adminCitiesUrl);
-        Assert.assertTrue(loginPage.containsStringUrl(loginUrl));
+        driver.get(BASEURL + ADMIN_CITIES_URL);
+        Assert.assertTrue(loginPage.containsStringUrl(LOGIN_URL));
     }
 
     @Test
     public void adminUserLoggedOutUser() {
 
-        driver.get(baseUrl + "/admin/users");
-        Assert.assertTrue(loginPage.containsStringUrl(loginUrl));
+        driver.get(BASEURL + "/admin/users");
+        Assert.assertTrue(loginPage.containsStringUrl(LOGIN_URL));
     }
 }

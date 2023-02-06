@@ -13,29 +13,16 @@ import java.time.Duration;
 public abstract class BaseTest {
 
     protected WebDriver driver;
+
     protected WebDriverWait webDriverWait;
     protected Faker faker;
-
-    protected LoginPage loginPage;
-    protected SignUpPage signupPage;
-
-    protected AdminCitiesPage adminCitiesPage;
     protected HomePage homePage;
-    protected MyProfilePage myProfilePage;
-
-    final String baseUrl = ("https://vue-demo.daniel-avellaneda.com");
-    final String email = "admin@admin.com";
-    final String truePass = "12345";
-    final String loginUrl = "/login";
-    final String homeUrl = "/home";
-    final String adminCitiesUrl = "/admin/cities";
-
-
-    protected String city;
-    protected String phoneNumber;
-    protected String country;
-    protected String twitterUrl;
-    protected String gitHubUrl;
+    protected final String BASEURL = ("https://vue-demo.daniel-avellaneda.com");
+    protected final String EMAIL = "admin@admin.com";
+    protected final String TRUE_PASS = "12345";
+    protected final String LOGIN_URL = "/login";
+    protected final String HOME_URL = "/home";
+    protected final String ADMIN_CITIES_URL = "/admin/cities";
 
     @BeforeClass
     public void beforeClass() {
@@ -44,22 +31,13 @@ public abstract class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         faker = new Faker();
-        loginPage = new LoginPage(driver, webDriverWait);
-        signupPage = new SignUpPage(driver, webDriverWait);
-        adminCitiesPage = new AdminCitiesPage(driver, webDriverWait);
         homePage = new HomePage(driver, webDriverWait);
-        myProfilePage = new MyProfilePage(driver, webDriverWait);
     }
 
     @BeforeMethod
     public void beforeMethod() {
-        driver.get(baseUrl);
+        driver.get(BASEURL);
         driver.manage().window().maximize();
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-
     }
 
     @AfterClass
