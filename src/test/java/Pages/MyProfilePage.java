@@ -46,27 +46,41 @@ public class MyProfilePage extends BasePage {
 
     }
 
-    public void editProfile(String phone, String city, String country, String twitter, String gitHub) {
-
+    public void addPhoneNumber(String phone) {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(phoneField));
         phoneField.clear();
         phoneField.sendKeys(phone);
+    }
 
+    public void addCity(String city) {
         cityField.sendKeys(Keys.SPACE);
         cityField.sendKeys(Keys.CONTROL + "a");
         cityField.sendKeys(city);
         cityField.sendKeys(Keys.ARROW_DOWN);
         cityField.sendKeys(Keys.ENTER);
+    }
 
+    public void addCountry(String country) {
         countryField.clear();
         countryField.sendKeys(country);
+    }
 
+    public void addTwitter(String twitter) {
         twitterField.clear();
         twitterField.sendKeys(twitter);
+    }
 
+    public void addGitHub(String gitHub) {
         gitHubField.clear();
         gitHubField.sendKeys(gitHub);
+    }
 
+    public void editProfile(String phone, String city, String country, String twitter, String gitHub) {
+        addPhoneNumber(phone);
+        addCity(city);
+        addCountry(country);
+        addTwitter(twitter);
+        addGitHub(gitHub);
         saveButton.click();
 
     }
