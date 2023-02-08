@@ -9,13 +9,13 @@ import org.testng.annotations.Test;
 
 public class ProfileTests extends BaseTest {
 
-    protected SignUpPage signupPage;
-    protected MyProfilePage myProfilePage;
-    final String CITY = "Chicago";
-    protected String phoneNumber;
-    protected String country;
-    protected String twitterUrl;
-    protected String gitHubUrl;
+    private SignUpPage signupPage;
+    private MyProfilePage myProfilePage;
+    private final String CITY = "Chicago";
+    private String phoneNumber;
+    private String country;
+    private String twitterUrl;
+    private String gitHubUrl;
 
     @Override
     @BeforeClass
@@ -33,8 +33,8 @@ public class ProfileTests extends BaseTest {
         signupPage.signUp(faker.name().firstName(), faker.internet().emailAddress(), faker.internet().password());
         phoneNumber = faker.phoneNumber().cellPhone();
         country = faker.country().name();
-        twitterUrl = "https://" + faker.internet().url();
-        gitHubUrl = "https://" + faker.internet().url();
+        twitterUrl = "https://twitter.com/" + faker.name().username().toLowerCase();
+        gitHubUrl = "https://guthub.com/" + faker.name().username().toLowerCase();
     }
 
 
@@ -52,5 +52,6 @@ public class ProfileTests extends BaseTest {
         Assert.assertEquals(myProfilePage.getCountryField().getAttribute("value"), country);
         Assert.assertEquals(myProfilePage.getTwitterField().getAttribute("value"), twitterUrl);
         Assert.assertEquals(myProfilePage.getGitHubField().getAttribute("value"), gitHubUrl);
+
     }
 }
